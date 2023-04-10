@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+
+
+
+ /*
+ Ejercicio 3
+Crear una clase comprobante de factura, con id, fecha, importe, lista de items 
+(cantidad, descripcion, precio unitario) y una función para calcular el total de la 
+factura. Imprimir el resultado en la consola del navegador.
+
+
+*/
+
+
+
+class comprobantefactura {
+
+    constructor(id,fecha,items){
+        this.id = id;
+        this.fecha = fecha;
+        this.items = items;
+        this.importe = this.calcularTotal(this.items);
+       
+    };
+
+    calcularTotal (list){
+        let total = 0;
+
+        
+        for (let index = 0; index < list.length; index++) {
+            total += list[index].cantidad * list[index].precioUnitario
+        }
+        return total;
+        
+    }
+}
+
+class item{
+    constructor(cant, desc, presUnit){
+        this.cantidad = cant;
+        this.descripcion = desc;
+        this.presUnit;
+    }
+}
+
+let item1 = new item(8,"celular",105000);
+let item2 = new item(2,"Yerba",1000);
+let item3 = new item(5,"azucar",500);
+let item4 = new item(7,"parlante",80000);
+
+let listaResu =[item1,item2,item3,item4];
+
+let comprobante = new comprobantefactura(1,"20/02/23",listaResu);
+
+console.log(comprobante);
+
+
+/* Ejercicio 2
+Dado esta lista de objetos, crear una nueva lista de objetos, pero en vez de tener un
+array de pagos, debería tener un array con las cuotas en deuda.
+[{poliza:123,patente:'AA345FD',cantidad_cuotas:12,pagadas[1,2,3,4]},
+{poliza:124,patente:'AA500RR',cantidad_cuotas:6,pagadas[1,2,3,4]},
+{poliza:125,patente:'AA200AA',cantidad_cuotas:12,pagadas[1,2,3,4,5,6,7,8,9,10,11,12]},
+{poliza:126,patente:'AA300SH',cuotas:8,pagadas[1,2]} ]
+Mostrar el resultado por consola */
+
+const lista = [{poliza:123,patente:'AA345FD',cantidad_cuotas:12,pagadas:[1,2,3,4]},
+ {poliza:124,patente:'AA500RR',cantidad_cuotas:6,pagadas:[1,2,3,4]},
+ {poliza:125,patente:'AA200AA',cantidad_cuotas:12,pagadas:[1,2,3,4,5,6,7,8,9,10,11,12]},
+ {poliza:126,patente:'AA300SH',cantidad_cuotas:8,pagadas:[1,2]} ] 
+let cuotasAdeudadas =[]
+lista.forEach(p=> {
+    let deuda = p.cantidad_cuotas - p.pagadas.length 
+    if(deuda > 0){
+        let listDeuda = []
+        for (let index = 1; index <= p.cantidad_cuotas; index++) {
+            if(!p.pagadas.includes(index)){
+                listDeuda.push(index)
+            }
+        }
+        cuotasAdeudadas.push({poliza: p.poliza,sin_pagar: listDeuda})
+    }
+})
+console.log(cuotasAdeudadas)
+
+
+/* Ejercicio 1
+    Dada una lista de numero [3,6,-4,8,10,-15,30,0,-12,20]
+    Calcular, utilizando un objeto para los resultados, cantidad de 
+    positivos y negativos, total de positivos y negativos, cantidad 
+    y total de números mayores a 8. Mostrar el objeto de los 
+    resultados en consola del navegador.*/
+
+    
+const listaDeNumeros = [3, 6, -4, 8, 10, -15, 30, 0, -12, 20];
+
+const resultados = {
+    cant_Negativos: 0,
+    cant_Positivos: 0,
+    total_Negativos: 0,
+    total_Positivos: 0,
+    cant_Mayores8: 0,
+    total_Mayores8: 0,
+};
+
+listaDeNumeros.forEach((num) => {
+  if (num > 0) {
+    resultados.cant_Positivos += 1;
+    resultados.total_Positivos += num;
+  } else if (num < 0) {
+    resultados.cant_Negativos += 1;
+    resultados.total_Negativos += num;
+  }
+
+  if (num > 8) {
+    resultados.cant_Mayores8 += 1;
+    resultados.total_Mayores8 += num;
+  }
+});
+
+
+console.log(resultados);
+
+</script>
