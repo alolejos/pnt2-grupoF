@@ -13,7 +13,8 @@
     <h3>Ingrese nombre<input v-model="nombre"></h3>
     <h3>Ingrese edad  <input v-model="edad"></h3>
     <h2><button v-on:click="agregarCliente">AgregarNuevo</button></h2>
-
+    <h2><button v-on:click="ordenarDeMenorAMayor">Ordenar < </button></h2>
+    <h2><button v-on:click="ordenarDeMayorAMenor">Ordenar > </button></h2>
 
 </div>
 <script>
@@ -51,8 +52,15 @@ modificarCliente(id){
     var indice = this.listaDeClientes.findIndex(elemento => elemento.id == id)
     this.listaDeClientes[indice].edad = this.edad,
     this.listaDeClientes[indice].nombre = this.nombre
-}
+},
 
+
+ordenarDeMenorAMayor(){
+   this.listaDeClientes.sort((a,b) => a.edad-b.edad)
+},
+ordenarDeMayorAMenor(){
+   this.listaDeClientes.sort((a,b) => b.edad-a.edad)
+}
 
 }
 }).mount('#app')
