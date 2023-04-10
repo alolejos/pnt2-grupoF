@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<div id="app">
+
+  <h2>Mi lista de numeros</h2>
+  <li v-for="menu in numeros">{{menu}}</li>
+  <h2>Agregar un numero</h2>
+  <button v-on:click="agregarNumero">Agregar</button>
+  <input v-model="numero">
+  <br>
+  <button v-on:click="removerUltimo">Quitar Ultimo</button>
+  
+</div>
+
+
+<script>
+
+/* Ejercicio 1
+Dada esta lista de numeros: [4,6,3,2,-3,2]
+1- Cargar esta lista en un array del objeto vue.
+2- Mostrar la lista con un li
+3- Pedir un numero y agregarlo a la lista. */
+
+const { createApp } = Vue
+createApp({
+data() {
+return {
+numeros:[4,6,3,2,-3,2],
+numero:0,
+}
+},
+methods:{
+  agregarNumero(){
+    this.numeros.push(this.numero)
+  },
+  removerUltimo(){
+    this.numeros.splice(this.numeros.length-1,1)
+  },
+
+}
+}).mount('#app')
+
+
+</script>
+</body>
+</html>

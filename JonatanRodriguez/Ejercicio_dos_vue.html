@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<div id="app">
+
+    <h2>Lista de Personas</h2>
+
+   
+
+    <li v-for="cliente in clientes">{{cliente.nombre + " " + cliente.apellido + " "+ cliente.edad}}
+    <button v-on:click="modificarCliente(cliente.id)">Modificar</button>  
+    <button v-on:click="eliminarCliente(cliente.id)">Eliminar</button>
+    </li>
+    
+    <h3>Ingrese nombre<input v-model="nombre"></h3>
+    <h3>Ingrese Apellido<input v-model="apellido"></h3>
+    <h3>Ingrese edad  <input v-model="edad"></h3>
+    <h2><button v-on:click="agregarCliente">AgregarNuevo</button></h2>
+
+
+</div>
+<script>
+
+/*
+ Ejercicio 2:
+  Dado una lista de clientes, con id, nombre y edad:
+    1- Cargar la lista de clientes en el objeto vue y mostrar la lista
+    2- Pedir los datos de un cliente y con un boton, agregarlo a la lista.
+    3- Bonus I : agregar un botón por cada elemento de la lista para permitir eliminar
+    4- Bonus II: agregar un botón por cada elemento para permitir modificar
+*/
+
+const { createApp } = Vue
+createApp({
+data() {
+return {
+clientes:[
+{   
+    id:1,
+    nombre:"Raul",
+    apellido: "Benitez",
+    edad:58,
+},
+
+],
+
+
+idNuevo:2,
+nombre:"",
+apellido:"",
+edad:0,
+
+
+
+
+}
+
+},
+methods:{
+    agregarCliente(){
+    this.clientes.push({id:++this.idNuevo,nombre:this.nombre,apellido:this.apellido,edad:this.edad})
+},
+
+eliminarCliente(id){
+    this.clientes.splice(this.clientes.findIndex(elemento => elemento.id == id),1)
+},
+modificarCliente(id){
+    var indice = this.clientes.findIndex(elemento => elemento.id == id)
+    this.clientes[indice].edad = this.edad,
+    this.clientes[indice].nombre = this.nombre
+    this.clientes[indice].apellido = this.apellido
+}
+
+}
+
+}).mount('#app')
+</script>
+</body>
+</html>
