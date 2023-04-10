@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<body>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
 
+<body>
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
  <div id="app">
+    <button v-bind:class="clase">{{clase}}</button>
+    <button :class="clase">{{clase}}</button>
     <h1 v-show=mostrarShow>{{ titulo }}</h1>
     <h1 v-if=mostrarIf>{{ mensaje }}</h1>
     <h1 v-else=mostrarIf>{{ mensaje }}</h1>
@@ -12,25 +20,28 @@
     <li v-for="menu in array">{{menu}}</li>
     <br/>
     <br/>
-    <table>
-      <tr><td>Nombre</td><td>Precio</td></tr>       
+    <table class="table">
+      <tr><td>Nombre</td><td>Precio</td><td>Borrar</td></tr>       
       <tr v-for="paseador in paseadores">
         <td v-show="paseador.activo">{{paseador.nombre}}</td>
         <td v-show="paseador.activo">{{paseador.precio}}</td>
+        <td><button class="btn-danger" @click="borrarPaseador(paseador.id)">Borrar</button></td>
       </tr>      
     </table>
-    <button v-on:click="agregar" >Borrar</button>
+    <button class="btn-danger" v-on:click="borrar" >Borrar</button>
     <br>
     <br>
     <br>
     <label>Nombre</label>
-    <input v-model="nombre">
+    <input v-model="paseador.nombre">
     <br>
     <label>Precio</label>
-    <input v-model="precio">
+    <input v-model="paseador.precio">
     <br>
     <br>
-    <button @click="agregarPaseador">Agregar</button>
+    <button class="btn-primary" @click="agregarPaseador">Agregar</button>
+    <br>
+    <button class="btn-secondary" @click="ordenar">Ordenar</button>
   </div>
 
  <script>
@@ -43,27 +54,34 @@
     otroMensaje: "Otro mensaje",
     array: ["Menu", "Opcion1", "Opcion2"], 
     mostrarShow: true,
+    clase: "btn-success",
     mostrarIf: false,
     numero: 0,
     precio: 0,
     nombre: "",
+    paseador: {
+      id: 0,
+      activo: true,
+      nombre: "",
+      precio: 0
+    },
     paseadores: [
-      {id: 1, activo: true, nombre: "Juan", precio: 159},
-      {id: 2, activo: true, nombre: "Rodrigo", precio: 89},
-      {id: 3, activo: true, nombre: "Juanita", precio: 120},      
+      {id: '1', activo: true, nombre: "Juan", precio: 159},
+      {id: '2', activo: true, nombre: "Rodrigo", precio: 89},
+      {id: '3', activo: true, nombre: "Juanita", precio: 120},      
     ]
   }
   },
   methods:{
-    agregar() {this.paseadores.push({id: this.numero++, activo:true, nombre: "otro"+this.numero, precio: 200})},
-    agregarPaseador(){
-      let paseador = {
-        id: this.numero++,
-        nombre: this.nombre,
-        activo: true,
-        precio: this.precio,
-      }
-      this.paseadores.push(paseador)
+    borrar() {this.paseadores.pop()},
+    borrarPaseador(id) {
+      console.log(id);
+      let index = this.paseadores.findIndex(e => e.id === id)
+      if(index !== -1) this.paseadores.splice(index, 1)
+    },
+    ordenar() {this.paseadores.sort((a, b)=>a.precio-b.precio)},
+    agregarPaseador(){      
+      this.paseadores.push(this.paseador)
     }
   }
   }).mount('#app')
