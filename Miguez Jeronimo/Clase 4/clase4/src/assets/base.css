@@ -72,3 +72,29 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.instrumentoId {
+  font-size: 2rem;
+}
+
+.instrumentos {
+padding: 1rem;
+border: .5rem double black;
+margin-bottom: 2rem;
+}
+
+td {
+  border: 0.1px solid grey;
+  padding: 10px;
+}
+
+.agregar {
+  border-radius: .5rem;
+  background-color: #9C3432;
+}
+
+.eliminar {
+  border-radius: .5rem;
+  background-color: #429C32;
+  margin-left: 1rem;
+}

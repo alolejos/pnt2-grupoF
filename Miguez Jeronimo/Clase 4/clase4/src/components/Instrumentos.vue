@@ -1,11 +1,11 @@
 <template>
-<table>
+<table class="instrumentos">
 <tr v-for="instrumento in instrumento">
-    <td>{{instrumento.id}}</td>
+    <td class="instrumentoId">{{instrumento.id}}</td>
     <td>{{instrumento.tipo}}</td>
     <td>{{instrumento.modelo}}</td>
     <td>
-        <button @click="borrarInstrumento(instrumento.id)">Eliminar</button>
+        <button class="agregar" @click="borrarInstrumento(instrumento.id)">Eliminar</button>
     </td>
 </tr>
 </table>

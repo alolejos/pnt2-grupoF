@@ -9,7 +9,7 @@
         <input name="modelo"/>
     </label>
 
-    <button>Agregar</button>
+    <button class="eliminar">Agregar</button>
     </form>
 </template>
 
