@@ -10,8 +10,7 @@ export default {
   },
   methods (){
 
-  },
-  emits: ['agregarPadre'],  
+  }
 }
 </script>
 

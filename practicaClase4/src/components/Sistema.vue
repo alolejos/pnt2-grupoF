@@ -2,12 +2,7 @@
   <div>
     <Cabecera />
     <h1>Gestor de Libros</h1>
-    <Item
-      v-for="libro in libros"
-      :key="libro.id"
-      v-bind:id="libro.id"
-      v-bind:descripcion="libro.descripcion"
-    />
+    <TablaLibros :libros="libros"></TablaLibros>
     <Libros @agregarPadre="agregar($event)" />
     <Pie v-bind:autor="autor" />
   </div>
@@ -18,19 +13,21 @@ import Cabecera from "./Cabecera.vue";
 import Pie from "./Pie.vue";
 import Item from "./Item.vue";
 import Libros from "./Libros.vue";
+import TablaLibros from "./TablaLibros.vue";
 export default {
   components: {
     Cabecera,
     Pie,
     Item,
     Libros,
+    TablaLibros,
   },
   data() {
     return {
       autor: "Cualquier otro",
       libros: [
-        { id: 1, descripcion: "Libro de la Selva" },
-        { id: 2, descripcion: "Alicia" },
+        { id: 1, nombre: "Libro de la Selva", autor: "Ni Idea", precio: 10 },
+        { id: 2, nombre: "Alicia", autor: "Lewis Carroll", precio: 20 },
       ],
     };
   },

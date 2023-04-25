@@ -7,7 +7,11 @@
     "preview": "vite preview --port 5050"
   },
   "dependencies": {
-    "vue": "^3.2.31"
+    "bcryptjs": "^2.4.3",
+    "crypto": "^1.0.1",
+    "crypto-js": "^4.1.1",
+    "vue": "^3.2.31",
+    "vue-uuid": "^3.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.1",
