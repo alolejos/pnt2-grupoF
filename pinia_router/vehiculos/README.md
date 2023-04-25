@@ -1,6 +1,10 @@
-# pinia
+# Frontend para ver Pinia y Router
 
-This template should help get you started developing with Vue 3 in Vite.
+Primero
+npm install
+
+Luego
+npm run dev
 
 ## Recommended IDE Setup
 
