@@ -53,7 +53,7 @@ defineProps({
             <RouterLink to="/users" class="dropdown-item" href="#"
               >Usuarios</RouterLink
             >
-            <a class="dropdown-item" href="#">Another action</a>
+            <RouterLink to="/cambiarNombre" class="dropdown-item">Cambiar Nombre</RouterLink>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Something else here</a>
           </div>

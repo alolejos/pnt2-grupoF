@@ -4,12 +4,13 @@ import axios from "axios";
 
 export const useCounterStore = defineStore("counter", {
   state: () => {
+    let a = 12
     return {
-      count: ref(0),
+      count: ref(a),
       userName: "",
       lista: [
-        { id: 1, marca: "FORD", modelo: "MUSTANG" },
-        { id: 2, marca: "CITROEN", modelo: "3CV" },
+        { id: 1, marca: "FORD", modelo: "MUSTANG", precio: 23232 },
+        { id: 2, marca: "CITROEN", modelo: "3CV", precio: 34563456 },
       ],
       listaUsers: [],
     };
@@ -48,5 +49,10 @@ export const useCounterStore = defineStore("counter", {
         return this.listaUsers;
       }
     },
+    getPrecioActualizado(id){
+      // obtenemos la inflación mensual de un servicio web
+      let porcentaje = 3.4
+      return this.lista[id].precio * porcentaje
+    }
   },
 });

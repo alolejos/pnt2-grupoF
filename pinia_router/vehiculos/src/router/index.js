@@ -24,6 +24,11 @@ const router = createRouter({
       name: "login",
       component: () => import("../views/Login.vue"),
     },
+    {
+      path: "/cambiarNombre",
+      name: "cambiarNombre",
+      component: () => import("../views/EditUser.vue")
+    }
   ],
 });
 

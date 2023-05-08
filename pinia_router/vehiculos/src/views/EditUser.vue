@@ -9,8 +9,8 @@ export default {
     const store = useCounterStore();
     const storeUser = useUserStore();
     const { userName } = storeToRefs(store);
-    const { user } = storeToRefs(storeUser)
-    const { changeName } = storeUser
+    const { user } = storeToRefs(storeUser);
+    const { changeName } = storeUser;
     return {
       user,
       userName,
@@ -19,8 +19,7 @@ export default {
   data() {
     return {
       user: {
-        mail: "",
-        pass: "",
+        name: "",
       },
       vue: this,
     };
@@ -31,7 +30,7 @@ export default {
         .post("http://localhost:3001/login", user)
         .then(function (response) {
           vue.userName = response.data.nombre;
-          vue.user.name = response.data.nombre; 
+          vue.user.name = response.data.nombre;
           vue.$router.push("/");
         })
         .catch(function (error) {
@@ -44,32 +43,19 @@ export default {
 </script>
 
 <template>
-  <h1>Login</h1>
+  <h1>Cambiar Nombre Usuario</h1>
   <h1>{{ userName }}</h1>
-  <form @submit.prevent="loguear(user, vue)">
+  <form @submit.prevent="changeName(user)">
     <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
+      <label for="exampleInputEmail1">Nombre</label>
       <input
-        v-model="user.mail"
-        type="email"
+        v-model="user.name"
+        type="text"
         class="form-control"
-        id="exampleInputEmail1"
         aria-describedby="emailHelp"
       />
-      <small id="emailHelp" class="form-text text-muted"
-        >We'll never share your email with anyone else.</small
-      >
     </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input
-        v-model="user.pass"
-        type="password"
-        class="form-control"
-        id="exampleInputPassword1"
-      />
-    </div>
-    <button type="submit" class="btn btn-primary">Login</button>
+    <button type="submit" class="btn btn-primary">Cambiar Nombre</button>
   </form>
 </template>
 
