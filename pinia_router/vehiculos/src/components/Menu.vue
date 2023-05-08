@@ -1,9 +1,9 @@
 <script setup>
 import { storeToRefs } from "pinia";
-import { useCounterStore } from "../stores/counter";
+import { useUserStore } from "../stores/user";
 import { RouterLink } from "vue-router";
-const store = useCounterStore();
-const { userName } = storeToRefs(store);
+const store = useUserStore();
+const { user } = storeToRefs(store);
 defineProps({
   msg: {
     type: String,
@@ -53,22 +53,24 @@ defineProps({
             <RouterLink to="/users" class="dropdown-item" href="#"
               >Usuarios</RouterLink
             >
-            <RouterLink to="/cambiarNombre" class="dropdown-item">Cambiar Nombre</RouterLink>
+            <RouterLink to="/cambiarNombre" class="dropdown-item"
+              >Cambiar Nombre</RouterLink
+            >
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </li>
       </ul>
       <div class="d-flex align-items-center my-2 my-lg-0">
-        <h2 v-if="userName != ''" class="pr-4">{{ userName }}</h2>
-        <RouterLink v-if="userName == ''" to="/login"
+        <h2 v-if="user.name != ''" class="pr-4">{{ user.name }}</h2>
+        <RouterLink v-if="user.name == ''" to="/login"
           ><button class="nav-link btn btn-outline-primary">
             Login
           </button></RouterLink
         >
-        <RouterLink v-if="userName != ''" to="/"
+        <RouterLink v-if="user.name != ''" to="/"
           ><button
-            @click="userName = ''"
+            @click="user.name = ''"
             class="nav-link btn btn-outline-danger"
           >
             Logout

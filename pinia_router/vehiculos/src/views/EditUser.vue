@@ -1,19 +1,16 @@
 <script>
 import axios from "axios";
 import { storeToRefs } from "pinia";
-import { useCounterStore } from "../stores/counter";
 import { useUserStore } from "../stores/user";
 
 export default {
   setup() {
-    const store = useCounterStore();
     const storeUser = useUserStore();
-    const { userName } = storeToRefs(store);
     const { user } = storeToRefs(storeUser);
     const { changeName } = storeUser;
     return {
       user,
-      userName,
+      changeName
     };
   },
   data() {
@@ -44,7 +41,7 @@ export default {
 
 <template>
   <h1>Cambiar Nombre Usuario</h1>
-  <h1>{{ userName }}</h1>
+  <h1>{{ user.name }}</h1>
   <form @submit.prevent="changeName(user)">
     <div class="form-group">
       <label for="exampleInputEmail1">Nombre</label>
