@@ -12,6 +12,11 @@ export const useCounterStore = defineStore("counter", {
         { id: 1, marca: "FORD", modelo: "MUSTANG", precio: 23232 },
         { id: 2, marca: "CITROEN", modelo: "3CV", precio: 34563456 },
       ],
+      // axios.get("www.sitio.com.ar/api/cars")
+      //      .then(response => lista = response.data.lista)
+      // con al lógica de ordenar en servicios sería
+      // import carsService from "../services/carsServices"
+      // lista = carsService.getCars()
       listaUsers: [],
     };
   },

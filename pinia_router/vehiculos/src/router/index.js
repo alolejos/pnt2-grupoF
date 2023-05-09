@@ -17,17 +17,17 @@ const router = createRouter({
     {
       path: "/users",
       name: "users",
-      component: () => import("../views/Users.vue"),
+      component: () => import("../views/UsersView.vue"),
     },
     {
       path: "/login",
       name: "login",
-      component: () => import("../views/Login.vue"),
+      component: () => import("../views/LoginView.vue"),
     },
     {
       path: "/cambiarNombre",
       name: "cambiarNombre",
-      component: () => import("../views/EditUser.vue")
+      component: () => import("../views/EditUserView.vue")
     }
   ],
 });

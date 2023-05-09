@@ -3,6 +3,7 @@ import axios from "axios";
 import { storeToRefs } from "pinia";
 import { useCounterStore } from "../stores/counter";
 import { useUserStore } from "../stores/user";
+import { login, register} from "../services/userService"
 
 export default {
   setup() {
@@ -27,17 +28,16 @@ export default {
   },
   methods: {
     loguear: (user, vue) => {
-      let respuesta = axios
-        .post("http://localhost:3001/login", user)
-        .then(function (response) {
+      login(user)
+      .then(function (response) {
           vue.userName = response.data.nombre;
           vue.user.name = response.data.nombre; 
           vue.$router.push("/");
         })
-        .catch(function (error) {
+      .catch(function (error) {
           alert("Error de usuario y contraseña");
           console.log(error);
-        });
+        });      
     },
   },
 };
